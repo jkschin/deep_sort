@@ -256,8 +256,27 @@ def parse_args():
 
 
 if __name__ == "__main__":
-    args = parse_args()
-    run(
-        args.sequence_dir, args.detection_file, args.output_file,
-        args.min_confidence, args.nms_max_overlap, args.min_detection_height,
-        args.max_cosine_distance, args.nn_budget, args.display)
+    # args = parse_args()
+    # run(
+    #     args.sequence_dir, args.detection_file, args.output_file,
+    #     args.min_confidence, args.nms_max_overlap, args.min_detection_height,
+    #     args.max_cosine_distance, args.nn_budget, args.display)
+
+    test_dir = "/home/jkschin/code/deep_sort/MOT16/test"
+    test_videos = os.listdir(test_dir)
+    confidences = [0.3, 0.5, 0.8, 0.9]
+
+    for test_video in test_videos:
+        for confidence in confidences:
+            print(test_video, confidence)
+            sequence_dir = "./MOT16/test/%s" %(test_video)
+            detection_file = "./resources/detections/MOT16_POI_test/%s.npy" %(test_video)
+            output_file = "/tracking_results/%s_%s.txt" %(test_video, int(confidence*10))
+            nms_max_overlap = 1.0
+            min_detection_height = 0
+            max_cosine_distance = 0.2
+            nn_budget = 100
+            display = False
+            run(sequence_dir, detection_file, output_file,
+                confidence, nms_max_overlap, min_detection_height,
+                max_cosine_distance, nn_budget, display)
