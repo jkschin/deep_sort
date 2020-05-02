@@ -266,12 +266,12 @@ if __name__ == "__main__":
     test_videos = os.listdir(test_dir)
     confidences = [0.3, 0.5, 0.8, 0.9]
 
-    for test_video in test_videos:
+    for test_video in sorted(test_videos):
         for confidence in confidences:
             print(test_video, confidence)
             sequence_dir = "./MOT16/test/%s" %(test_video)
             detection_file = "./resources/detections/MOT16_POI_test/%s.npy" %(test_video)
-            output_file = "/tracking_results/%s_%s.txt" %(test_video, int(confidence*10))
+            output_file = "./tracking_results/%s_%s.txt" %(test_video, int(confidence*10))
             nms_max_overlap = 1.0
             min_detection_height = 0
             max_cosine_distance = 0.2
