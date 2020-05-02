@@ -88,5 +88,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# schin's settings
 resources/
 MOT16/
+final/
+output/

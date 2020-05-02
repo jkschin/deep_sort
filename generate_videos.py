@@ -41,7 +41,7 @@ if __name__ == "__main__":
     os.makedirs(args.output_dir, exist_ok=True)
     for sequence_txt in os.listdir(args.result_dir):
         sequence = os.path.splitext(sequence_txt)[0]
-        sequence_dir = os.path.join(args.mot_dir, sequence)
+        sequence_dir = os.path.join(args.mot_dir, sequence[:-2])
         if not os.path.exists(sequence_dir):
             continue
         result_file = os.path.join(args.result_dir, sequence_txt)
